@@ -8,6 +8,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+var VueResource = require('vue-resource');
+var VueAsyncData = require('vue-async-data');
+
+Vue.use(VueResource);
+Vue.use(VueAsyncData);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
