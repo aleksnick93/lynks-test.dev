@@ -150,7 +150,11 @@ return [
         /*
          * Package Service Providers...
          */
-
+        GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
+		Barryvdh\Debugbar\ServiceProvider::class,
+		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+		Laracasts\Generators\GeneratorsServiceProvider::class,
+		
         /*
          * Application Service Providers...
          */
