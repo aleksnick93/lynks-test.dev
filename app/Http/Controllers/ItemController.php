@@ -14,8 +14,6 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $fruits = Item::fruits();
-        return $fruits;
         //
     }
 
