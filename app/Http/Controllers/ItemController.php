@@ -14,7 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+        return view('items.index', ['items' => $items]);
     }
 
     /**
@@ -35,7 +36,8 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = Item::create($request->all());
+        return $item;
     }
 
     /**
@@ -46,7 +48,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return Item::findOrFail($item->id);
     }
 
     /**
@@ -69,7 +71,9 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $item = Item::findOrFail($item->id);
+        $item->update($request->all());
+        return $item;
     }
 
     /**
@@ -80,6 +84,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item = Item::findOrFail($item->id);
+        $item->delete();
+        return 'Item deleted sucessfully!';
     }
 }
