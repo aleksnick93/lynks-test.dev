@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::orderByDesc('id')->paginate(18);
+        $items = Item::orderByDesc('id')->paginate(12);
         return view('items.index', ['items' => $items]);
     }
 
@@ -75,6 +75,10 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
+        $this->validate($request, [
+            'name' => 'required|min:3|max:255',
+            'key' => 'required|min:2|max:25',
+        ]);
         $item->name = $request->name;
         $item->key = $request->key;
         $item->save();
