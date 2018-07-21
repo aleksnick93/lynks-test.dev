@@ -13,7 +13,8 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2 class="mb-3">All Items</h2>
+                        <h2 class="mb-3">All Items <a href="{{route('items.create')}}" class="btn btn-primary mb-3"><i
+                                        class="fa fa-plus"></i> New Item</a></h2>
                     </div>
 
                     <div class="panel-body">
@@ -26,13 +27,19 @@
                                             <p class="card-text">
                                                 <a href="http://www.{{ $item->name }}">{{ $item->name }}</a>
                                             </p>
-                                            <a  href="{{route('items.show', $item->id)}}" class="btn btn-success">Show key</a>
+                                            <a href="{{route('items.show', $item->id)}}" class="btn btn-info"><i
+                                                        class="fa fa-eye"></i> Show key</a>
+                                            <a href="{{route('items.edit', $item->id)}}" class="btn btn-success"><i
+                                                        class="fa fa-edit"></i> Edit</a>
+                                            <a href="{{route('items.destroy', $item->id)}}" class="btn btn-danger"><i
+                                                        class="fa fa-trash-o"></i> Remove</a>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
                     </div>
+                    {{$items->links()}}
                 </div>
             </div>
         </div>

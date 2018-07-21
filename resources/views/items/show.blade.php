@@ -23,12 +23,13 @@
                                     <a href="http://www.{{ $item->name }}">{{ $item->name }}</a>
                                 </h4>
                                 <p class="card-text">
-                                    Key is: {{$item->key}}
+                                    <i class="fa fa-unlock"></i> Key is: <b>{{$item->key}}</b>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <a href="{{route('items.index')}}" class="btn btn-secondary"><i class="fa fa-reply"></i> Back</a>
             </div>
         </div>
     </div>
