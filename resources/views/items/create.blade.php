@@ -4,7 +4,7 @@
  * User: Radioactiveman
  * Date: 21.07.2018
  * Time: 15:46
- */?>
+ */ ?>
 @extends('layouts.app')
 
 @section('content')
@@ -22,7 +22,9 @@
                             <div class="form-group row">
                                 <label for="name" class="col-sm-4 col-form-label text-md-right">Domain (name)</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" placeholder="domain.com" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" placeholder="domain.com"
+                                           class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                           name="name" value="{{ old('name') }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -32,9 +34,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="key" class="col-sm-4 col-form-label text-md-right">Assotiative word (key)</label>
+                                <label for="key" class="col-sm-4 col-form-label text-md-right">Assotiative word
+                                    (key)</label>
                                 <div class="col-md-6">
-                                    <input id="key" type="text" placeholder="orange" class="form-control{{ $errors->has('key') ? ' is-invalid' : '' }}" name="key" value="{{ old('key') }}" required autofocus>
+                                    <input id="key" type="text" placeholder="orange"
+                                           class="form-control{{ $errors->has('key') ? ' is-invalid' : '' }}" name="key"
+                                           value="{{ old('key') }}" required autofocus>
 
                                     @if ($errors->has('key'))
                                         <span class="invalid-feedback" role="alert">

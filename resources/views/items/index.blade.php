@@ -31,8 +31,15 @@
                                                         class="fa fa-eye"></i> Show key</a>
                                             <a href="{{route('items.edit', $item->id)}}" class="btn btn-success"><i
                                                         class="fa fa-edit"></i> Edit</a>
-                                            <a href="{{route('items.destroy', $item->id)}}" class="btn btn-danger"><i
-                                                        class="fa fa-trash-o"></i> Remove</a>
+                                            <form class="d-inline-block" method="post"
+                                                  action="{{route('items.destroy',$item)}}"
+                                                  onsubmit="return confirm('Are you sure to remove this Item {{$item->id}}?')">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger"><i
+                                                            class="fa fa-trash-o"></i> Remove
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

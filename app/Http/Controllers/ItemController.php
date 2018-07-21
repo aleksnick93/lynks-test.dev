@@ -31,14 +31,14 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-           'name' => 'required|min:3|max:255',
-           'key' => 'required|min:2|max:25',
+            'name' => 'required|min:3|max:255',
+            'key' => 'required|min:2|max:25',
         ]);
         Item::create($request->all());
         return redirect(route('items.index'));
@@ -47,7 +47,7 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Item  $item
+     * @param  \App\Item $item
      * @return \Illuminate\Http\Response
      */
     public function show(Item $item)
@@ -58,37 +58,38 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Item  $item
+     * @param  \App\Item $item
      * @return \Illuminate\Http\Response
      */
     public function edit(Item $item)
     {
-        return view('items.edit', ['item' => $item]);
+        return view('items.edit', compact('item'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Item  $item
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Item $item
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Item $item)
     {
-        $item = Item::findOrFail($item->id);
-        $item->update($request->all());
-        return redirect(route('items.index'));
+        $item->name = $request->name;
+        $item->key = $request->key;
+        $item->save();
+        session()->flash('message', 'Your item has been updated successfully');
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Item  $item
+     * @param  \App\Item $item
      * @return \Illuminate\Http\Response
      */
     public function destroy(Item $item)
     {
-        $item = Item::findOrFail($item->id);
         $item->delete();
         return redirect(route('items.index'));
     }
