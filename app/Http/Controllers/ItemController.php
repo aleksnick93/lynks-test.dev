@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Item::orderByDesc('id')->paginate(18);
         return view('items.index', ['items' => $items]);
     }
 
@@ -25,7 +25,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.create');
     }
 
     /**
@@ -36,8 +36,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $item = Item::create($request->all());
-        return $item;
+        $this->validate($request, [
+           'name' => 'required|min:3|max:255',
+           'key' => 'required|min:2|max:25',
+        ]);
+        Item::create($request->all());
+        return redirect(route('items.index'));
     }
 
     /**
@@ -48,7 +52,6 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //return Item::findOrFail($item->id);
         return view('items.show', ['item' => $item]);
     }
 
@@ -60,7 +63,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('items.edit', ['item' => $item]);
     }
 
     /**
@@ -74,7 +77,7 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($item->id);
         $item->update($request->all());
-        return $item;
+        return redirect(route('items.index'));
     }
 
     /**
@@ -87,6 +90,6 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($item->id);
         $item->delete();
-        return 'Item deleted sucessfully!';
+        return redirect(route('items.index'));
     }
 }
